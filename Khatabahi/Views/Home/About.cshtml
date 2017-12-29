@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "About";
+    List<Khatabahi.Models.product> ProductsList = new List<Khatabahi.Models.product>();
+    List<Khatabahi.Models.feature> FeaturesList = new List<Khatabahi.Models.feature>();
+    List<Khatabahi.Models.product_categ> CategoryList = new List<Khatabahi.Models.product_categ>();
+    foreach (var item in ViewBag.myList)
+    {
+        if (item is List<Khatabahi.Models.product>)
+        {
+            ProductsList = item;
+        }
+        else if (item is List<Khatabahi.Models.feature>)
+        {
+            FeaturesList = item;
+        }
+        else if(item is List<Khatabahi.Models.product_categ>)
+        {
+            CategoryList = item;
+        }
+
+    }
+    
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+</head>
+<body>
+    @ViewBag.tel
+    <div>
+        @ViewBag.myList
+        @foreach(Khatabahi.Models.product_categ categ in CategoryList)
+        {
+            int count = 0;
+            //output categ Name
+            var t = 0;
+            foreach (Khatabahi.Models.product p in ProductsList)
+            {
+                <p>@count</p>
+                if(p.ProductType == categ.CategName)
+                {
+                    //the div goes here
+                    <p>@p.ProductName</p>
+                    //remove the item from the list
+                    t = p.ProductID;
+                }
+                count++;
+            }
+            if (t != 0)
+            {
+                var item = ProductsList.First(x => x.ProductID == t);
+                ProductsList.Remove(item);
+            }
+
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Khatabahi.Models.product>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h4>Products</h4>
+    <hr />
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th>ProductID</th>
+            <th>Product Name</th>
+            <th>Product Subhead</th>
+            <th>Product Description</th>
+            <th>Product Img</th>
+            <th>Product Cost</th>
+            <th>Product Type</th>
+            <th>Product Pdf</th>
+            <th>Product Validity</th>            
+        </tr>
+        @foreach (Khatabahi.Models.product product in Model)
+        {
+        <tr>
+            <td>@product.ProductID</td>
+            <td>@product.ProductName</td>
+            <td>@product.ProductSubHead</td>
+            <td>@product.ProductDetail</td>
+            <td>@product.img</td>
+            <td>@product.cost</td>
+            <td>@product.ProductType</td>
+            <td>@product.ProductPdf</td>
+            <td>@product.Validity</td>
+        </tr>
+        }
+    </table>
+</body>
+</html>

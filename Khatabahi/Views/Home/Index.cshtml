@@ -1,0 +1,336 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    List<Khatabahi.Models.product> ProductsList = new List<Khatabahi.Models.product>();
+    List<Khatabahi.Models.feature> FeaturesList = new List<Khatabahi.Models.feature>();
+    List<Khatabahi.Models.product_categ> CategoryList = new List<Khatabahi.Models.product_categ>();
+    foreach (var item in ViewBag.myList)
+    {
+        if (item is List<Khatabahi.Models.product>)
+        {
+            ProductsList = item;
+        }
+        else if (item is List<Khatabahi.Models.feature>)
+        {
+            FeaturesList = item;
+        }
+        else if (item is List<Khatabahi.Models.product_categ>)
+        {
+            CategoryList = item;
+        }
+
+    }
+    var clearfix = 0;
+}
+<div id="page">
+    <section id="header">
+        <div class="container">
+            <nav role="navigation">
+                <ul class="pull-left left-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#projects">Pricing</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+                <h1 id="logo">
+                    <div class="text-center">
+                        <img src="~/Images/logo.jpg" class="img-logo" alt="Image" width="150px">
+                    </div>
+                </h1>
+                <!-- <ul class="pull-right right-menu">
+                    <li><a href="#">Login</a></li>
+                    <li class="cta-btn"><a href="#">Sign up</a></li>
+                </ul> -->
+            </nav>
+        </div>
+    </section>
+    <!-- #header -->
+
+    <section id="hero" class="js-fullheight" style="background-image: url(../../Images/hero_bg.jpg);" data-next="yes">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="intro js-fullheight">
+                <div class="intro-text">
+                    <div class="left-position">
+                        <h2 class="animate-box">Retail Software made for Everyone</h2>
+                        <p class="animate-box">
+                            <a href="#" class="btn btn-outline btn-video"><i class="icon-play2"></i>Buy Now</a>
+                            <a href="#" class="btn btn-primary">Learn More</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="learn-more animate-box">
+            <a href="#" class="scroll-btn">
+                <span class="arrow"><i class="icon-chevron-down"></i></span>
+            </a>
+        </div>
+    </section>
+    <!-- END #hero -->
+
+
+    <section id="projects">
+        <div class="container">
+            <div class="row row-bottom-padded-md">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <h2 class="lead animate-box">Our Products</h2>
+                    <p class="sub-lead animate-box">Below is the list of our products designed to run your organization and business smoothly. </p>
+                </div>
+            </div>
+
+            @foreach (Khatabahi.Models.product_categ categ in CategoryList)
+            {
+                int count = 0;
+                var t = 0;
+                //output categ Name
+                <div class="row">
+                    <p class="head">
+                        @categ.CategName
+                    </p>
+
+                    @foreach (Khatabahi.Models.product product in ProductsList)
+                    {
+                        if (product.ProductType == categ.CategName)
+                        {
+                            //the div goes here
+                            <div class="col-md-4 col-sm-6 col-xxs-12 animate-box">
+                                <a class="project-item" data-id="@product.ProductID">
+                                    <img src="~/Images/@product.img" alt="Image" class="img-responsive">
+                                    <div class="text">
+                                        <h2>@product.ProductName</h2>
+                                        <p> KhataBahi Accounting software is powerful, yet easy-to-use business software, and is applicable for any kind of business.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            //remove the item from the list
+                            t = product.ProductID;
+                        }
+                        count++;
+                    }
+                    @if (t != 0)
+                    {
+                        var item = ProductsList.First(x => x.ProductID == t);
+                        ProductsList.Remove(item);
+                    }
+                </div>
+            }
+        </div>
+    </section>
+    <!-- END #projects -->
+    <section id="features">
+        <div class="container">
+            <div class="row text-center row-bottom-padded-md">
+                <div class="col-md-8 col-md-offset-2">
+                    <figure class="devices animate-box"><img src="~/Images/img_devices.png" alt="" class="img-responsive"></figure>
+                    <h2 class="lead animate-box">Key Features</h2>
+                    <p class="sub-lead animate-box">Retail Software with everything that you'll need to expand and grow your business. Keep and manage everything from a single place. </p>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (Khatabahi.Models.feature f in FeaturesList)
+                {                    
+                    <div class="col-md-4 col-sm-6 col-xs-12 animate-box">
+                        <div class="feature">
+                            <div class="icon">
+                                <i class="@f.img"></i>
+                            </div>
+                            <h3>@f.FeatureName</h3>
+                            <p>@f.FeatureDetail</p>
+                        </div>
+                    </div>
+                    clearfix++;
+                    if (clearfix % 2 == 0)
+                    {
+                        <div class="clearfix visible-sm-block"></div>
+                    }
+                }                
+            </div>
+        </div>
+    </section>
+    <!-- END #features -->
+
+
+
+    <section id="features-2">
+        <div class="container">
+            <div class="col-md-6 col-md-push-6">
+                <figure class="feature-image animate-box">
+                    <img src="images/macbook.png" alt="Free HTML5 Bootstrap Template by FREEHTML5.co">
+                </figure>
+            </div>
+            <div class="col-md-6 col-md-pull-6">
+                <span class="label animate-box">See functionalities</span>
+                <h2 class="lead animate-box">Additional Functionalities</h2>
+                <div class="feature">
+                    <div class="icon animate-box"><i class="icon-check2"></i></div>
+                    <div class="text animate-box">
+                        <h3>Point of Sale & Purchase Order</h3>
+                        <p>One can easily place, manage and transfer all of his orders easily from a single platform with a few clicks. </p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="icon animate-box"><i class="icon-check2"></i></div>
+                    <div class="text animate-box">
+                        <h3>Mobile Application</h3>
+                        <p>Stay updated and analyse reports on the way using our Khatabahi mobile application. </p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="icon animate-box"><i class="icon-check2"></i></div>
+                    <div class="text animate-box">
+                        <h3>All in One</h3>
+                        <p>We combines the idealogy of Retail, Supply Chain, Manufacturing Management along with Sales force Management </p>
+                    </div>
+                </div>
+
+                <div class="btn-action animate-box">
+                    <a href="#" class="btn btn-primary btn-cta">More Features</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- END #features-2 -->
+
+
+    <section id="subscribe">
+        <div class="container">
+
+            <h3 class="animate-box"><label for="email">Reach out to us at</label></h3>
+            <form action="#" method="post" class="animate-box">
+                <i class="icon icon-paper-plane"></i>
+                <input type="email" class="form-control" placeholder="Enter your email" id="email" name="email" value="connect@khatabahi.com" readonly>
+            </form>
+
+        </div>
+    </section>
+    <!-- END #subscribe -->
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row row-bottom-padded-md">
+                <div class="col-md-3 col-sm-6 col-xs-12 animate-box">
+                    <div class="footer-widget">
+                        <h3>Company</h3>
+                        <ul class="links">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Pricing</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12 animate-box">
+                    <div class="footer-widget">
+                        <h3>Support</h3>
+                        <ul class="links">
+                            <li><a href="#">24/7 Call Support</a></li>
+                            <li><a href="#">Demos</a></li>
+                            <li><a href="#">Terms of Use</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12 animate-box">
+                    <div class="footer-widget">
+                        <h3>Contact Us</h3>
+                        <p>
+                            <a href="#">
+                                #677, 3rd Block,
+                                Kormangala, Bangalore, India
+                            </a>
+                        </p>
+                        <p>
+
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12 animate-box">
+                    <div class="footer-widget">
+                        <h3>Follow Us</h3>
+                        <ul class="social">
+                            <li><a href="#"><i class="icon-twitter"></i></a></li>
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-google-plus"></i></a></li>
+                            <li><a href="#"><i class="icon-instagram"></i></a></li>
+                            <li><a href="#"><i class="icon-youtube-play"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="copyright animate-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="left"><small>&copy; 2016 <a href="index-2.html">Senov Tech </a>All Rights Reserved.</small></p>
+                        <p class="right"><small class="right">Designed by <a href="#" target="_blank">Senov Tech</a></small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END #footer -->
+</div>
+<div class="modal fade" id="modal-main">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Khatabahi 9.01</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row level-1">
+                    <p class="sub-lead mhead">Product Type : <span class="mtext mh1">Desktop Application</span></p>
+                    <p class="sub-lead mhead">Product Cost : <span class="mtext mh2">Rs. 250 per month</span></p>
+                    <p class="sub-lead mhead">Description :</p>
+                    <p class="mhead mtext mh3">KhataBahi Accounting Software is the best value for money accounting software for small business. It comes complete with Accounting modules, Sales & Purchasing modules, and also the Inventory modules. KhataBahi Accounting software is powerful, yet easy-to-use business software, and is applicable for any kind of business. This business accounting software will help you process sales and purchases, track receivables, payables and GST.</p>
+                </div>
+                <div class="row level-2">
+                    <p class="sub-lead mhead">Key Features :</p>
+                    <table class="table table-striped table-hover mtable">
+                        <tbody>
+                            <tr>
+                                <td>Accounts</td>
+                            </tr>
+                            <tr>
+                                <td>Banking</td>
+                            </tr>
+                            <tr>
+                                <td>Sales & Receivables</td>
+                            </tr>
+                            <tr>
+                                <td>Purchases & Payables</td>
+                            </tr>
+                            <tr>
+                                <td>Inventory</td>
+                            </tr>
+                            <tr>
+                                <td>Card file Management</td>
+                            </tr>
+                            <tr>
+                                <td>Job management</td>
+                            </tr>
+                            <tr>
+                                <td>To-do list</td>
+                            </tr>
+                            <tr>
+                                <td>Reports</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-default mback">Back</button>
+                <button type="button" class="btn btn-default mfeatures">Key Features</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
