@@ -28,5 +28,6 @@ namespace Khatabahi.Models
         public virtual DbSet<feature> features { get; set; }
         public virtual DbSet<product> products { get; set; }
         public virtual DbSet<product_categ> product_categ { get; set; }
+        public virtual DbSet<feedback> feedbacks { get; set; }
     }
 }

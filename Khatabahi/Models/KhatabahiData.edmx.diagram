@@ -8,6 +8,7 @@
         <EntityTypeShape EntityType="KhatabahiModel.feature" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KhatabahiModel.product" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KhatabahiModel.product_categ" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="KhatabahiModel.feedback" Width="1.5" PointX="3.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -157,6 +157,9 @@
     <Compile Include="Models\feature.cs">
       <DependentUpon>KhatabahiData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\feedback.cs">
+      <DependentUpon>KhatabahiData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\KhatabahiData.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -232,6 +235,7 @@
       <LastGenOutput>KhatabahiData.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\contact.js" />
     <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.easing.1.3.js" />
     <Content Include="Scripts\jquery.flexslider-min.js" />

@@ -14,6 +14,16 @@
           <Property Name="FeatureDetail" Type="varchar" MaxLength="500" />
           <Property Name="img" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="feedback">
+          <Key>
+            <PropertyRef Name="FeedbackID" />
+          </Key>
+          <Property Name="FeedbackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustName" Type="varchar" MaxLength="100" />
+          <Property Name="Number" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Message" Type="varchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="product_categ">
           <Key>
             <PropertyRef Name="CategID" />
@@ -38,6 +48,7 @@
         </EntityType>
         <EntityContainer Name="KhatabahiModelStoreContainer">
           <EntitySet Name="features" EntityType="Self.features" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="feedback" EntityType="Self.feedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="product_categ" EntityType="Self.product_categ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -72,6 +83,7 @@
           <EntitySet Name="features" EntityType="Self.feature" />
           <EntitySet Name="products" EntityType="Self.product" />
           <EntitySet Name="product_categ" EntityType="KhatabahiModel.product_categ" />
+          <EntitySet Name="feedbacks" EntityType="KhatabahiModel.feedback" />
         </EntityContainer>
         <EntityType Name="product_categ">
           <Key>
@@ -80,6 +92,16 @@
           <Property Name="CategID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CategOrder" Type="Int32" />
+        </EntityType>
+        <EntityType Name="feedback">
+          <Key>
+            <PropertyRef Name="FeedbackID" />
+          </Key>
+          <Property Name="FeedbackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Number" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -118,6 +140,17 @@
                 <ScalarProperty Name="CategOrder" ColumnName="CategOrder" />
                 <ScalarProperty Name="CategName" ColumnName="CategName" />
                 <ScalarProperty Name="CategID" ColumnName="CategID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="feedbacks">
+            <EntityTypeMapping TypeName="KhatabahiModel.feedback">
+              <MappingFragment StoreEntitySet="feedback">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="CustName" ColumnName="CustName" />
+                <ScalarProperty Name="FeedbackID" ColumnName="FeedbackID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -83,6 +83,26 @@ namespace Khatabahi.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }               
+        }       
+
+        [HttpPost]
+        public JsonResult GetProductDetail(int id)
+        {            
+            var prod = from m in db.products
+                         where m.ProductID == id
+                         select m;
+
+            return Json(prod);
+        }
+
+        [HttpPost]
+        public JsonResult FeedbackForm(string name, string email, string mobile, string message)
+        {
+            var prod = name + email + mobile + message;
+            DataContext
+            return Json(prod);
+        }
+
+
     }
 }
